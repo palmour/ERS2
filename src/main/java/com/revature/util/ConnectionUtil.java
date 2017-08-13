@@ -36,7 +36,7 @@ public class ConnectionUtil {
 		try {
 			conn = DriverManager.getConnection(url, user, password);
 		}catch(SQLException e) {
-			url = "jdbc:oracle:think:@localhost:1521/orcl";
+			url = "jdbc:oracle:thin:@localhost:1521/orcl";
 			conn = DriverManager.getConnection(url, user, password);
 		}
 		System.out.println(url); System.out.println(user); System.out.println(password);
