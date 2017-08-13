@@ -1,0 +1,30 @@
+#account-info-form{
+    margin:auto;
+}
+
+html{
+    font: Arial, Helvetica, sans-serif;
+}
+
+header{
+    color: white;
+    background-color: #8888AA;
+    margin-bottom: 75px;
+}
+
+header h1{
+    font-weight: bold;
+}
+
+#edit-button, #save-button{
+    font-size: 20px;
+    margin-left: 475px;
+    width: 20%;
+    font: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#save-button{
+    display: none;
+}

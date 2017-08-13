@@ -1,0 +1,41 @@
+html{
+    font: Arial, Helvetica, sans-serif;
+}
+.dropdown{
+    position: relative;
+    float: right;
+    right: 120px;
+    bottom: 35px;
+} 
+
+.glyphicon.glyphicon-align-justify{
+    font-size: 25px;
+}
+
+button.dropdown-toggle{
+    background-color: #3377AA;
+}
+
+header{
+    color: white;
+    background-color: #8888AA
+}
+
+header h1{
+    font-weight: bold;
+}
+
+body{
+    background-color: #EEEEEE;
+}
+
+#pagination-div{
+    padding-left: 20px;
+}
+
+.badge:hover{
+    background-color: white;
+    color: #666666;
+    transition: 0.4s;
+    cursor: pointer;
+}

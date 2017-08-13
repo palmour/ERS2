@@ -1,0 +1,50 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="settings.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>Settings</title>
+    </head>
+
+    <header>
+        <div class="container">
+            <h1>Settings</h1>
+        </div>
+    </header>
+    <div id="account-info-form" class="input-group tabcontent">
+        
+        <form>
+            <!--Placeholders should be current db values -->
+            <input type="text" class="form-control field" value="Username" disabled="true">
+            <input type="text" class="form-control field" value="Password" disabled="true">
+            <input type="text" class="form-control field" value="First Name" disabled="true">
+            <input type="text" class="form-control field" value="Last Name" disabled="true">
+            <input type="email" class="form-control field" value="youraddress@email.com" disabled="true">
+        </form>
+        <div class="container wrapper edit-button-wrapper">
+            <button id="edit-button" type="submit" class="btn btn-default" onclick="enableEdit(event)">
+                Edit
+            </button>
+            <button id="save-button" type="submit" class="btn btn-default" onclick="enableEdit(event)">
+                Save
+            </button>
+        </div>
+    </div>
+    <script>
+        function enableEdit(e){
+            let inputs = document.getElementsByClassName("field");
+            let i;
+            for(i=0; i<inputs.length; i++){
+                inputs[i].disabled=  false;
+            }
+            let editButton = document.getElementById("edit-button");
+            let saveButton = document.getElementById("save-button");
+            editButton.style.display = "none";
+            saveButton.style.display = "block";
+        }
+    </script>
+</html>
