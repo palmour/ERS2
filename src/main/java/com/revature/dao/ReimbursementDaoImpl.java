@@ -3,6 +3,7 @@ package com.revature.dao;
 import java.sql.Blob;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -89,7 +90,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	// this login returns user info for current user
 	// that's if their info does match our info
 	@Override
-	public Employee LoginIn2(String us, String pw) {
+	public Employee GetUserInfo(String us, String pw) {
 		Employee temp = new Employee();
 		CallableStatement cs = null;
 		try(Connection conn = ConnectionUtil.getConnectionProp()){
@@ -161,7 +162,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		List<Reimbursement> rlist = new ArrayList();
 		CallableStatement cs = null;
 		try(Connection conn = ConnectionUtil.getConnectionProp()){
-			String sql = "SELECT * FROM ERS_REIMBURSEMENTS";
+			String sql = "SELECT * FROM ERS_REIMBURSEMENTS"
+					+ " where U_ID_AUTHOR = "+emp.getU_ID()+"";
 			cs = conn.prepareCall(sql);
 			ResultSet rs = cs.executeQuery();
 			while(rs.next()) {
@@ -236,12 +238,12 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 
 	@Override
-	public List<Reimbursement> AllApprovedReimbursement() {
+	public List<Reimbursement> AllResolvedReimbursement() {
 		List<Reimbursement> rlist = new ArrayList();
 		CallableStatement cs = null;
 		try(Connection conn = ConnectionUtil.getConnectionProp()){
 			String sql = "SELECT * FROM ERS_REIMBURSEMENTS WHERE "
-					+ "RT_STATUS = 3";
+					+ "RT_STATUS = 3 OR RT_STATUS = 4";
 			cs = conn.prepareCall(sql);
 			ResultSet rs = cs.executeQuery();
 			while(rs.next()) {
@@ -305,4 +307,159 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		
 	}
 
+	@Override
+	public List<Reimbursement> AllReimbursementsEver() {
+		List<Reimbursement> rlist = new ArrayList();
+		CallableStatement cs = null;
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String sql = "SELECT * FROM ERS_REIMBURSEMENTS";
+			cs = conn.prepareCall(sql);
+			ResultSet rs = cs.executeQuery();
+			while(rs.next()) {
+				int uid = rs.getInt("U_ID_AUTHOR");
+				int rids = rs.getInt("R_ID");
+				int amount = rs.getInt("R_AMOUNT");
+				String des = rs.getString("R_DESCRIPTION");
+				Blob rreceipt = rs.getBlob("R_RECEIPT");
+				Timestamp rsub = rs.getTimestamp("R_SUBMITTED");
+				Timestamp rreso = rs.getTimestamp("R_RESOLVED");
+				int idreso = rs.getInt("U_ID_RESOLVER");
+				int rttype = rs.getInt("RT_TYPE");
+				int rtstatus = rs.getInt("RT_STATUS");
+				
+				Reimbursement r = new Reimbursement(rids, amount, des, rreceipt, rsub, 
+						rreso, uid, idreso, rttype, rtstatus);
+				rlist.add(r);
+				
+			}
+			rs.close();	
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return rlist;
+	}
+
+
+	
+	@Override
+	public List<Reimbursement> AllresolvedReimbursementForUser(Employee emp) {
+		List<Reimbursement> rlist = new ArrayList();
+		CallableStatement cs = null;
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String sql = "SELECT * FROM ERS_REIMBURSEMENTS"
+					+ " where U_ID_AUTHOR = "+emp.getU_ID()+" AND RT_STATUS = 3 OR U_ID_AUTHOR = "+emp.getU_ID()+""
+							+ " AND RT_STATUS = 4";
+			cs = conn.prepareCall(sql);
+			ResultSet rs = cs.executeQuery();
+			while(rs.next()) {
+				int uid = emp.getU_ID();
+				int rids = rs.getInt("R_ID");
+				int amount = rs.getInt("R_AMOUNT");
+				String des = rs.getString("R_DESCRIPTION");
+				Blob rreceipt = rs.getBlob("R_RECEIPT");
+				Timestamp rsub = rs.getTimestamp("R_SUBMITTED");
+				Timestamp rreso = rs.getTimestamp("R_RESOLVED");
+				int idreso = rs.getInt("U_ID_RESOLVER");
+				int rttype = rs.getInt("RT_TYPE");
+				int rtstatus = rs.getInt("RT_STATUS");
+				
+				Reimbursement r = new Reimbursement(rids, amount, des, rreceipt, rsub, 
+						rreso, uid, idreso, rttype, rtstatus);
+				rlist.add(r);
+				
+			}
+			rs.close();	
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return rlist;
+	}
+
+
+	
+	@Override
+	public List<Reimbursement> AllunresolvedReimbursementForUser(Employee emp) {
+		List<Reimbursement> rlist = new ArrayList();
+		CallableStatement cs = null;
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String sql = "SELECT * FROM ERS_REIMBURSEMENTS"
+					+ " where U_ID_AUTHOR = "+emp.getU_ID()+" AND RT_STATUS = 1 OR U_ID_AUTHOR = "+emp.getU_ID()+""
+							+ " AND RT_STATUS = 2";
+			cs = conn.prepareCall(sql);
+			ResultSet rs = cs.executeQuery();
+			while(rs.next()) {
+				int uid = emp.getU_ID();
+				int rids = rs.getInt("R_ID");
+				int amount = rs.getInt("R_AMOUNT");
+				String des = rs.getString("R_DESCRIPTION");
+				Blob rreceipt = rs.getBlob("R_RECEIPT");
+				Timestamp rsub = rs.getTimestamp("R_SUBMITTED");
+				Timestamp rreso = rs.getTimestamp("R_RESOLVED");
+				int idreso = rs.getInt("U_ID_RESOLVER");
+				int rttype = rs.getInt("RT_TYPE");
+				int rtstatus = rs.getInt("RT_STATUS");
+				
+				Reimbursement r = new Reimbursement(rids, amount, des, rreceipt, rsub, 
+						rreso, uid, idreso, rttype, rtstatus);
+				rlist.add(r);
+				
+			}
+			rs.close();	
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return rlist;
+	}
+
+
+	
+	@Override
+	public Employee EditEmployeeInfo(String un, String pw, String fname, String lname, String email, 
+			Employee emp) {
+		Employee temp = new Employee();
+		PreparedStatement cs = null;
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String sql = "UPDATE ERS_USERS SET U_USERNAME = ?, U_PASSWORD = ?, "
+					+ "U_FIRSTNAME = ?, U_LASTNAME = ?, U_EMAIL = ?"
+					+ " WHERE U_USERNAME = ?";
+			cs = conn.prepareStatement(sql);
+			cs.setString(1, un);
+			cs.setString(2, pw);
+			cs.setString(3, fname);
+			cs.setString(4, lname);
+			cs.setString(5, email);
+			cs.setString(6, emp.getU_USERNAME());
+			cs.execute();
+			temp.setU_ID(emp.getU_ID());
+			temp.setU_USERNAME(un);
+			temp.setU_PASSWORD(pw);
+			temp.setU_FIRSTNAME(fname);
+			temp.setU_LASTNAME(lname);
+			temp.setUR_ID(emp.getUR_ID());
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return temp;
+	}
+	
 }

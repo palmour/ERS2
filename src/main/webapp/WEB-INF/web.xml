@@ -11,6 +11,15 @@
   </welcome-file-list>
   
   <servlet>
+  	<servlet-name>loadImps</servlet-name>
+  	<servlet-class>com.revature.servlets.LoadEmployeeList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>loadImps</servlet-name>
+  	<url-pattern>/allEmployees</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>newUser</servlet-name>
   	<servlet-class>com.revature.servlets.NewUserServlet</servlet-class>
   </servlet>
