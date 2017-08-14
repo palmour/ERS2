@@ -36,14 +36,10 @@ public class LoginServlet extends HttpServlet{
 			response.sendRedirect(page);
 		}else {
 			Gson gson = new Gson();
-			String loginFailedMessage = "Invalid username/password.<br/><a href='./home.html'>Try Again</a>";
-			String loginFailedJson = gson.toJson(loginFailedMessage);
-			
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
+			String loginFailedMessage = "<p>Invalid username/password.<br/><a href=\"home.html\">Try Again</a></p>";
 			
 			PrintWriter out = response.getWriter();
-			out.write(loginFailedJson);
+			out.println(loginFailedMessage);
 		}
 	}
 }
