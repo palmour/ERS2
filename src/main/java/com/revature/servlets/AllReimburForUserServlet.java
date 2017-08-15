@@ -24,8 +24,9 @@ public class AllReimburForUserServlet extends HttpServlet {
 		throws ServletException, IOException{
 		
 		Employee temp = new Employee();
-		HttpSession session = req.getSession();
-		String us = (String) session.getAttribute("username");
+		//HttpSession session = req.getSession();
+		//String us = (String) session.getAttribute("username");
+		String us = "cpalm";
 		temp.setU_USERNAME(us);
 		List<Reimbursement> rlist = new ArrayList();
 		ReimbursementDaoImpl dao = new ReimbursementDaoImpl();

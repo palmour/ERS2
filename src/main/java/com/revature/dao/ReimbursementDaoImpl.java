@@ -192,7 +192,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			e.printStackTrace();
 		}
 		
-		
+		System.out.println(rlist);
 		return rlist;
 	}
 	
@@ -290,7 +290,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				String fname = rs.getString("U_FIRSTNAME");
 				String lname = rs.getString("U_LASTNAME");
 				String email = rs.getString("U_EMAIL");
-				String urid = rs.getString("UR_ID");
+				int urid = rs.getInt("UR_ID");
 				
 				Employee e = new Employee(uid, us, pw, fname, lname, email, urid);
 				elist.add(e);

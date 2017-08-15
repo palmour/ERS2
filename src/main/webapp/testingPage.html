@@ -2,187 +2,60 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-	<h1 id= "demo1"> practiceServlet call</h1>
-	<button type="button" onclick="practiceJSON()">Don't click me!</button>
+	<h1 id= "demo1"> EmployeeList</h1>
+	<button type="button" onclick="makeEmpTable()">Click if you must</button>
 	
-	<h1 id="demo2">EmployeeList</h1>
-	<button type="button" onclick="getEmployees()">Click if you must</button>
+	<div id="practice1">
+	</div>
 	
-	<h1 id="demo3">UserReimbursements</h1>
-	<button type="button" onclick="getUserReimburse()">Click again</button>
+	<h1 id="demo2">UserReimbursements</h1>
+	<button type="button" onclick="getUserReimburse2()">Click again</button>
 	
-	<h1 id="demo4">AllActiveReimbursements</h1>
+	<div id="practice2">
+	</div>
+	
+	<h1 id="demo3">AllActiveReimbursements</h1>
 	<button type="button" onclick="allnewPenReimburse()">I guess</button>
 	
-	<h1 id="demo5">AllresolvedReimbursements</h1>
+	<div id="practice3">
+	</div>
+	
+	<h1 id="demo4">AllresolvedReimbursements</h1>
 	<button type="button" onclick="allresReimburse()">Don't press</button>
 	
-	<h1 id="demo6">User unresolved Reimbursements</h1>
+	<div id="practice4">
+	</div>
+	
+	<h1 id="demo5">User unresolved Reimbursements</h1>
 	<button type="button" onclick="UserunresReimbur()">Death is near</button>
 	
-	<h1 id="demo7">User resolved Reimbursements</h1>
+	<div id="practice5">
+	</div>
+	
+	<h1 id="demo6">User resolved Reimbursements</h1>
 	<button type="button" onclick="UserResReimbur()"> I told you it was near!</button>
 	
-	<h1 id="demo8">User info</h1>
-	<button type="button" onclick="userInfo()"> I told you it was near!</button>
+	<div id="practice6">
+	</div>
 	
-	<h1 id="demo9">Edit info</h1>
-	<button type="button" onclick="editInfo()"> I told you it was near!</button>
+	<h1 id="demo7">User info</h1>
+	<button type="button" onclick="userInfo()"> *evil Laugh*</button>
 	
+	<div id="practice7">
+	</div>
 	
+	<h1 id="demo8">Edit info</h1>
+	<button type="button" onclick="editInfo()"> Death has arrived!</button>
 	
+	<div id="practice8">
+	</div>
 
 
 </body>
-<script>
-function practiceJSON() {
-	let xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function(){
-		if(xhttp.readyState === 4 && xhttp.status === 200){
-			console.log(this.readyState)
-			alert(xhttp.responseText);
-		}
-		
-	}
-	
-	xhttp.open("GET", "practiceServlet", true);
-	xhttp.send()
-	
-}
-
-function getEmployees(){
-	let xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function(){
-		if(xhttp.readyState === 4 && xhttp.status === 200){
-			console.log(this.readyState)
-			alert(xhttp.responseText);
-		}
-		
-	}
-	
-	xhttp.open("GET", "loadImps", true);
-	xhttp.send()
-	
-}
-function getUserReimburse(){
-	let xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function(){
-		if(xhttp.readyState === 4 && xhttp.status === 200){
-			console.log(this.readyState)
-			alert(xhttp.responseText);
-		}
-		
-	}
-	
-	xhttp.open("GET", "userReimburse", true);
-	xhttp.send()
-}
-
-function allnewPenReimburse(){
-	let xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function(){
-		if(xhttp.readyState === 4 && xhttp.status === 200){
-			console.log(this.readyState)
-			alert(xhttp.responseText);
-		}
-		
-	}
-
-	
-	xhttp.open("GET", "newPenReimburse", true);
-	xhttp.send()
-}
-
-function allresReimburse(){
-	let xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function(){
-		if(xhttp.readyState === 4 && xhttp.status === 200){
-			console.log(this.readyState)
-			alert(xhttp.responseText);
-		}
-		
-	}
-
-	
-	xhttp.open("GET", "resolvedReimburse", true);
-	xhttp.send()
-	
-}
-
-function UserunresReimbur(){
-	let xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function(){
-		if(xhttp.readyState === 4 && xhttp.status === 200){
-			console.log(this.readyState)
-			alert(xhttp.responseText);
-		}
-		
-	}
-
-	
-	xhttp.open("GET", "userUnResReimbur", true);
-	xhttp.send()
-}
-
-function UserResReimbur(){
-	let xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function(){
-		if(xhttp.readyState === 4 && xhttp.status === 200){
-			console.log(this.readyState)
-			alert(xhttp.responseText);
-		}
-		
-	}
-
-	
-	xhttp.open("GET", "userResReimbur", true);
-	xhttp.send()
-}
-
-function userInfo(){
-	let xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function(){
-		if(xhttp.readyState === 4 && xhttp.status === 200){
-			console.log(this.readyState)
-			alert(xhttp.responseText);
-		}
-		
-	}
-
-	
-	xhttp.open("GET", "userInfo", true);
-	xhttp.send()
-	
-}
-
-function editInfo(){
-	let xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function(){
-		if(xhttp.readyState === 4 && xhttp.status === 200){
-			console.log(this.readyState)
-			alert(xhttp.responseText);
-		}
-		
-	}
-
-	
-	xhttp.open("GET", "editInfo", true);
-	xhttp.send()
-}
-
-
-
-</script>
+<script src="testingPage.js"></script>
 </html>
