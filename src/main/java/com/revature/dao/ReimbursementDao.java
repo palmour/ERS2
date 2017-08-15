@@ -11,19 +11,19 @@ public interface ReimbursementDao {
 	public Employee CreateNewEmp(String us, String pw, String fname, 
 			String lname, String email);
 	public boolean LoginIn(String us, String pw);
-	public Employee GetUserInfo(String us, String pw);
+	public Employee GetUserInfo(String us, String pw); // not done
 	
 	public Reimbursement CreateNewReimbursement(int amount, String description, Blob receipt, 
 			int ty, Employee emp);
 	
-	public List<Reimbursement> AllReimbursementsEver();
-	public List<Reimbursement> AllReimbursementForUser(Employee emp);
-	public List<Reimbursement> AllresolvedReimbursementForUser(Employee emp);
-	public List<Reimbursement> AllunresolvedReimbursementForUser(Employee emp);
-	public List<Reimbursement> AllNewPendingReimbursement();
-	public List<Reimbursement> AllResolvedReimbursement();
+	public List<Reimbursement> AllReimbursementsEver(); //done
+	public List<Reimbursement> AllReimbursementForUser(Employee emp); //done
+	public List<Reimbursement> AllresolvedReimbursementForUser(Employee emp); // not done
+	public List<Reimbursement> AllunresolvedReimbursementForUser(Employee emp); // not done
+	public List<Reimbursement> AllNewPendingReimbursement(); // done
+	public List<Reimbursement> AllResolvedReimbursement(); // done
 	
-	public List<Employee> AllEmployees();
+	public List<Employee> AllEmployees(); // done
 	public Employee EditEmployeeInfo(String un, String pw, String fname, 
 			String lname, String email, Employee emp);
 }

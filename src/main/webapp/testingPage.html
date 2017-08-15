@@ -5,6 +5,104 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1 id= "demo1"> practiceServlet call</h1>
+	<button type="button" onclick="practiceJSON()">Don't click me!</button>
+	
+	<h1 id="demo2">EmployeeList</h1>
+	<button type="button" onclick="getEmployees()">Click if you must</button>
+	
+	<h1 id="demo3">UserReimbursements</h1>
+	<button type="button" onclick="getUserReimburse()">Click if you must</button>
+	
+	<h1 id="demo4">AllActiveReimbursements</h1>
+	<button type="button" onclick="allnewPenReimburse()">Click if you must</button>
+	
+	<h1 id="demo5">AllresolvedReimbursements</h1>
+	<button type="button" onclick="allresReimburse()">Click if you must</button>
+	
+
 
 </body>
+<script>
+function practiceJSON() {
+	let xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState === 4 && xhttp.status === 200){
+			console.log(this.readyState)
+			alert(xhttp.responseText);
+		}
+		
+	}
+	
+	xhttp.open("GET", "practiceServlet", true);
+	xhttp.send()
+	
+}
+
+function getEmployees(){
+	let xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState === 4 && xhttp.status === 200){
+			console.log(this.readyState)
+			alert(xhttp.responseText);
+		}
+		
+	}
+	
+	xhttp.open("GET", "loadImps", true);
+	xhttp.send()
+	
+}
+function getUserReimburse(){
+	let xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState === 4 && xhttp.status === 200){
+			console.log(this.readyState)
+			alert(xhttp.responseText);
+		}
+		
+	}
+	
+	xhttp.open("GET", "userReimburse", true);
+	xhttp.send()
+}
+
+function allnewPenReimburse(){
+	let xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState === 4 && xhttp.status === 200){
+			console.log(this.readyState)
+			alert(xhttp.responseText);
+		}
+		
+	}
+
+	
+	xhttp.open("GET", "newPenReimburse", true);
+	xhttp.send()
+}
+
+function allresReimburse(){
+let xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState === 4 && xhttp.status === 200){
+			console.log(this.readyState)
+			alert(xhttp.responseText);
+		}
+		
+	}
+
+	
+	xhttp.open("GET", "resolvedReimburse", true);
+	xhttp.send()
+	
+}
+
+
+</script>
 </html>

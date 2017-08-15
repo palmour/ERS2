@@ -11,12 +11,39 @@
   </welcome-file-list>
   
   <servlet>
+  	<servlet-name>resolvedReimburse</servlet-name>
+  	<servlet-class>com.revature.servlets.AllUnactiveReimburseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>resolvedReimburse</servlet-name>
+  	<url-pattern>/resolvedReimburse</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>newPenReimburse</servlet-name>
+  	<servlet-class>com.revature.servlets.AllActiveReimburseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>newPenReimburse</servlet-name>
+  	<url-pattern>/newPenReimburse</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>userReimburse</servlet-name>
+  	<servlet-class>com.revature.servlets.AllReimburForUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>userReimburse</servlet-name>
+  	<url-pattern>/userReimburse</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>loadImps</servlet-name>
   	<servlet-class>com.revature.servlets.LoadEmployeeList</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>loadImps</servlet-name>
-  	<url-pattern>/allEmployees</url-pattern>
+  	<url-pattern>/loadImps</url-pattern>
   </servlet-mapping>
   
   <servlet>

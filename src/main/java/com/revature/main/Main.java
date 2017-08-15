@@ -43,8 +43,13 @@ public class Main {
 		
 		
 		*/
+		Employee temp = new Employee();
+		List<Reimbursement> rlist = new ArrayList();
+		temp.setU_USERNAME("cpalm");
 		ReimbursementDao rd = new ReimbursementDaoImpl();
-		rd.CreateNewEmp("jjjjj","jjjjj", "jjjjj", "jjjjj", "jjj@jjj.com");
+		rlist = rd.AllReimbursementForUser(temp);
+		System.out.println(rlist);
+		System.out.println(rlist.size());
 	}
 
 }

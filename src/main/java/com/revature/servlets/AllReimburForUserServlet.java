@@ -15,18 +15,20 @@ import com.revature.dao.ReimbursementDaoImpl;
 import com.revature.domain.Employee;
 import com.revature.domain.Reimbursement;
 
-public class LoadEmployeeList extends HttpServlet{
+public class AllReimburForUserServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 		throws ServletException, IOException{
 		
-		List<Employee> elist = new ArrayList();
+		Employee temp = new Employee();
+		temp.setU_USERNAME("cpalm");
+		List<Reimbursement> rlist = new ArrayList();
 		ReimbursementDaoImpl dao = new ReimbursementDaoImpl();
-		elist = dao.AllEmployees();
+		rlist = dao.AllReimbursementForUser(temp);
 		Gson gson = new Gson();
-		String rJSON = gson.toJson(elist);
+		String rJSON = gson.toJson(rlist);
 		
 		res.setContentType("application/json");
 		res.setCharacterEncoding("UTF-8");

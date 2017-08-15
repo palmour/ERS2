@@ -163,11 +163,11 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		CallableStatement cs = null;
 		try(Connection conn = ConnectionUtil.getConnectionProp()){
 			String sql = "SELECT * FROM ERS_REIMBURSEMENTS"
-					+ " where U_ID_AUTHOR = "+emp.getU_ID()+"";
+					+ " where U_ID_AUTHOR = (Select ERS_USERS.U_ID From ERS_USERS where U_USERNAME = '"+emp.getU_USERNAME()+"')";
 			cs = conn.prepareCall(sql);
 			ResultSet rs = cs.executeQuery();
 			while(rs.next()) {
-				int uid = emp.getU_ID();
+				int uid = rs.getInt("U_ID_AUTHOR");
 				int rids = rs.getInt("R_ID");
 				int amount = rs.getInt("R_AMOUNT");
 				String des = rs.getString("R_DESCRIPTION");
