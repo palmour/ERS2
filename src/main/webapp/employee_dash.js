@@ -40,5 +40,20 @@ function init(){
 		newRequestDiv.style.display = "none";
 	}
 	
+	function readPhotoPath(input){
+		if(input.files && input.files[0]){
+			let fr = new FileReader();
+			fr.onload = function(e){
+				document.getElementById("submitted-photo").setAttribute("src", e.target.result);
+			}
+			
+			fr.readAsDataURL(input.files[0]);
+		}
+	}
+	
+	$("#receipt-img").change(function(){
+		readPhotoPath(this);
+	});
+	
 	
 }

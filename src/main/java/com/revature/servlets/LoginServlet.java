@@ -1,4 +1,4 @@
-package com.revature.servlets;
+ package com.revature.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.revature.dao.ReimbursementDao;
 import com.revature.dao.ReimbursementDaoImpl;
+import com.revature.domain.Employee;
 
 public class LoginServlet extends HttpServlet{
 
@@ -27,13 +28,20 @@ public class LoginServlet extends HttpServlet{
 		
 		boolean authentication = rd.LoginIn(us, pw);
 		if(authentication) {
-			response.setContentType("text/html");
-			String page = "./employee_dash.html";
 			
+			Employee loggingIn = rd.GetUserInfo(us, pw);
+			int userRole = loggingIn.getUR_ID();
+			
+			String page = "#";
+			
+			if(userRole > 2) {page = "./employee_dash.html";}
+			else {page = "./manager_dash.html";}
+			
+			response.setContentType("text/html");
 			HttpSession session = request.getSession();
 			session.setAttribute("username", us);
-			
 			response.sendRedirect(page);
+			
 		}else {
 			Gson gson = new Gson();
 			String loginFailedMessage = "<p>Invalid username/password.<br/><a href=\"home.html\">Try Again</a></p>";

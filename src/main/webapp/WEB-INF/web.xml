@@ -50,4 +50,14 @@
   	<url-pattern>/logout</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>newReimbursement</servlet-name>
+  	<servlet-class>com.revature.servlets.newReimbursementServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>newReimbursement</servlet-name>
+  	<url-pattern>/newReimbursement</url-pattern>
+  </servlet-mapping>
+  
  </web-app>

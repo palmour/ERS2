@@ -89,7 +89,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	// this login returns user info for current user
 	// that's if their info does match our info
 	@Override
-	public Employee LoginIn2(String us, String pw) {
+	public Employee GetUserInfo(String us, String pw) {
 		Employee temp = new Employee();
 		CallableStatement cs = null;
 		try(Connection conn = ConnectionUtil.getConnectionProp()){
@@ -304,5 +304,4 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		return elist;
 		
 	}
-
 }
