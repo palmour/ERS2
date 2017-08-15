@@ -12,13 +12,19 @@
 	<button type="button" onclick="getEmployees()">Click if you must</button>
 	
 	<h1 id="demo3">UserReimbursements</h1>
-	<button type="button" onclick="getUserReimburse()">Click if you must</button>
+	<button type="button" onclick="getUserReimburse()">Click again</button>
 	
 	<h1 id="demo4">AllActiveReimbursements</h1>
-	<button type="button" onclick="allnewPenReimburse()">Click if you must</button>
+	<button type="button" onclick="allnewPenReimburse()">I guess</button>
 	
 	<h1 id="demo5">AllresolvedReimbursements</h1>
-	<button type="button" onclick="allresReimburse()">Click if you must</button>
+	<button type="button" onclick="allresReimburse()">Don't press</button>
+	
+	<h1 id="demo6">User unresolved Reimbursements</h1>
+	<button type="button" onclick="UserunresReimbur()">Death is near</button>
+	
+	<h1 id="demo7">User resolved Reimbursements</h1>
+	<button type="button" onclick="UserResReimbur()"> I told you it was near!</button>
 	
 
 
@@ -87,7 +93,7 @@ function allnewPenReimburse(){
 }
 
 function allresReimburse(){
-let xhttp = new XMLHttpRequest();
+	let xhttp = new XMLHttpRequest();
 	
 	xhttp.onreadystatechange = function(){
 		if(xhttp.readyState === 4 && xhttp.status === 200){
@@ -102,6 +108,39 @@ let xhttp = new XMLHttpRequest();
 	xhttp.send()
 	
 }
+
+function UserunresReimbur(){
+	let xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState === 4 && xhttp.status === 200){
+			console.log(this.readyState)
+			alert(xhttp.responseText);
+		}
+		
+	}
+
+	
+	xhttp.open("GET", "userUnResReimbur", true);
+	xhttp.send()
+}
+
+function UserResReimbur(){
+	let xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState === 4 && xhttp.status === 200){
+			console.log(this.readyState)
+			alert(xhttp.responseText);
+		}
+		
+	}
+
+	
+	xhttp.open("GET", "userResReimbur", true);
+	xhttp.send()
+}
+
 
 
 </script>

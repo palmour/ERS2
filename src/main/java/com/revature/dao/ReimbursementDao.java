@@ -18,8 +18,8 @@ public interface ReimbursementDao {
 	
 	public List<Reimbursement> AllReimbursementsEver(); //done
 	public List<Reimbursement> AllReimbursementForUser(Employee emp); //done
-	public List<Reimbursement> AllresolvedReimbursementForUser(Employee emp); // not done
-	public List<Reimbursement> AllunresolvedReimbursementForUser(Employee emp); // not done
+	public List<Reimbursement> AllresolvedReimbursementForUser(Employee emp); // done
+	public List<Reimbursement> AllunresolvedReimbursementForUser(Employee emp); // done
 	public List<Reimbursement> AllNewPendingReimbursement(); // done
 	public List<Reimbursement> AllResolvedReimbursement(); // done
 	

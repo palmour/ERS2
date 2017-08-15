@@ -11,6 +11,24 @@
   </welcome-file-list>
   
   <servlet>
+  	<servlet-name>userResReimbur</servlet-name>
+  	<servlet-class>com.revature.servlets.AllResReimburForUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>userResReimbur</servlet-name>
+  	<url-pattern>/userResReimbur</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>userUnResReimbur</servlet-name>
+  	<servlet-class>com.revature.servlets.AllUnresReimForUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>userUnResReimbur</servlet-name>
+  	<url-pattern>/userUnResReimbur</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>resolvedReimburse</servlet-name>
   	<servlet-class>com.revature.servlets.AllUnactiveReimburseServlet</servlet-class>
   </servlet>
