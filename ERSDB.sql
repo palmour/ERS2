@@ -79,7 +79,7 @@ Alter table ERS_REIMBURSEMENTS
 	foreign key (RT_STATUS)
 	references ERS_REIMBURSEMENT_STATUS (RS_ID) on delete cascade;
 
-﻿Alter table ERS_REIMBURSEMENTS
+Alter table ERS_REIMBURSEMENTS
 modify R_SUBMITTED default current_timestamp;
 	
 Alter table ERS_REIMBURSEMENTS

@@ -57,6 +57,11 @@ public class Main {
 		rtemp = rd.CreateNewReimbursement(54, "candy", null, 3, temp);
 		System.out.println(rtemp);
 		
+		rd.updateReimbursement(3, 22, temp);
+		rlist = rd.AllReimbursementsEver();
+		System.out.println(rlist);
+		
+		
 	}
 
 }

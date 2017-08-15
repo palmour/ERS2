@@ -453,5 +453,28 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		}
 		return temp;
 	}
+
+
+	
+	
+	@Override
+	public void updateReimbursement(int status, int r_id, Employee emp) {
+		Reimbursement temp = new Reimbursement();
+		PreparedStatement  cs = null;
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String sql = "Update ERS_REIMBURSEMENTS set RT_STATUS = ?, U_ID_RESOLVER = ?, R_RESOLVED = current_timestamp"
+					+ " where R_ID = ?";
+			cs = conn.prepareCall(sql);
+			cs.setInt(1, status);
+			cs.setInt(2, emp.getU_ID());
+			cs.setInt(3, r_id);
+			cs.execute();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 }

@@ -24,6 +24,7 @@ public interface ReimbursementDao {
 	public List<Reimbursement> AllResolvedReimbursement(); // done
 	
 	public List<Employee> AllEmployees(); // done
+	public void updateReimbursement(int status, int r_id, Employee emp); // not done
 	public Employee EditEmployeeInfo(String un, String pw, String fname, 
 			String lname, String email, String oun); // not done
 }
