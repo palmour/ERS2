@@ -2,42 +2,42 @@ package com.revature.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.revature.dao.ReimbursementDaoImpl;
 import com.revature.domain.Employee;
-import com.revature.domain.Reimbursement;
 
-public class AllResReimburForUserServlet extends HttpServlet {
-
+public class editUserInfoServlet extends HttpServlet{
+	
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException{
 			
-			HttpSession session = req.getSession();
-			String us = (String) session.getAttribute("username");
+			String username = "I'm the best!";
+			String pass = "password";
+			String fname = "Cecilia";
+			String lname = "Garcia";
+			String email = "cgarcia@mail.com";
+			String orUN = "Sofia";
 			Employee temp = new Employee();
-			temp.setU_USERNAME("cpalm");
-			temp.setU_ID(26);
-			List<Reimbursement> rlist = new ArrayList();
 			ReimbursementDaoImpl dao = new ReimbursementDaoImpl();
-			rlist = dao.AllresolvedReimbursementForUser(temp);
+			dao.EditEmployeeInfo(username, pass, fname, lname, email, orUN);
+			temp = dao.GetUserInfo(username);
 			Gson gson = new Gson();
-			String rJSON = gson.toJson(rlist);
+			String rJSON = gson.toJson(temp);
 			
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			PrintWriter out = res.getWriter();
 			out.write(rJSON);
 			
+			
 		}
+
 }

@@ -90,14 +90,14 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	// this login returns user info for current user
 	// that's if their info does match our info
 	@Override
-	public Employee GetUserInfo(String us, String pw) {
+	public Employee GetUserInfo(String us) {
 		Employee temp = new Employee();
 		CallableStatement cs = null;
 		try(Connection conn = ConnectionUtil.getConnectionProp()){
 			String sql = "{CALL P_GET_USER_INFO_FROM_PASSWORD( ?, ?, ?, ?, ?, ?, ?)}";
 			cs = conn.prepareCall(sql);
 			cs.setString(1, us);
-			cs.setString(2, pw);
+			cs.registerOutParameter(2, Types.VARCHAR);
 			cs.registerOutParameter(3, Types.INTEGER);
 			cs.registerOutParameter(4, Types.VARCHAR);
 			cs.registerOutParameter(5, Types.VARCHAR);
@@ -106,7 +106,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			cs.execute();
 			temp.setU_ID(cs.getInt(3));
 			temp.setU_USERNAME(us);
-			temp.setU_PASSWORD(pw);
+			temp.setU_PASSWORD(cs.getString(2));
 			temp.setU_FIRSTNAME(cs.getString(4));
 			temp.setU_LASTNAME(cs.getString(5));
 			temp.setU_EMAIL(cs.getString(6));
@@ -431,7 +431,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	
 	@Override
 	public Employee EditEmployeeInfo(String un, String pw, String fname, String lname, String email, 
-			Employee emp) {
+			String oun) {
 		Employee temp = new Employee();
 		PreparedStatement cs = null;
 		try(Connection conn = ConnectionUtil.getConnectionProp()){
@@ -444,14 +444,12 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			cs.setString(3, fname);
 			cs.setString(4, lname);
 			cs.setString(5, email);
-			cs.setString(6, emp.getU_USERNAME());
+			cs.setString(6, oun);
 			cs.execute();
-			temp.setU_ID(emp.getU_ID());
 			temp.setU_USERNAME(un);
 			temp.setU_PASSWORD(pw);
 			temp.setU_FIRSTNAME(fname);
 			temp.setU_LASTNAME(lname);
-			temp.setUR_ID(emp.getUR_ID());
 			
 			
 		}catch(SQLException e) {

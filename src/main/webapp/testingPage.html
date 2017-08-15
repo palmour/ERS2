@@ -26,6 +26,14 @@
 	<h1 id="demo7">User resolved Reimbursements</h1>
 	<button type="button" onclick="UserResReimbur()"> I told you it was near!</button>
 	
+	<h1 id="demo8">User info</h1>
+	<button type="button" onclick="userInfo()"> I told you it was near!</button>
+	
+	<h1 id="demo9">Edit info</h1>
+	<button type="button" onclick="editInfo()"> I told you it was near!</button>
+	
+	
+	
 
 
 </body>
@@ -138,6 +146,39 @@ function UserResReimbur(){
 
 	
 	xhttp.open("GET", "userResReimbur", true);
+	xhttp.send()
+}
+
+function userInfo(){
+	let xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState === 4 && xhttp.status === 200){
+			console.log(this.readyState)
+			alert(xhttp.responseText);
+		}
+		
+	}
+
+	
+	xhttp.open("GET", "userInfo", true);
+	xhttp.send()
+	
+}
+
+function editInfo(){
+	let xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState === 4 && xhttp.status === 200){
+			console.log(this.readyState)
+			alert(xhttp.responseText);
+		}
+		
+	}
+
+	
+	xhttp.open("GET", "editInfo", true);
 	xhttp.send()
 }
 

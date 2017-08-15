@@ -11,6 +11,25 @@
   </welcome-file-list>
   
   <servlet>
+  	<servlet-name>editInfo</servlet-name>
+  	<servlet-class>com.revature.servlets.editUserInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>editInfo</servlet-name>
+  	<url-pattern>/editInfo</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>userInfo</servlet-name>
+  	<servlet-class>com.revature.servlets.userInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>userInfo</servlet-name>
+  	<url-pattern>/userInfo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>userResReimbur</servlet-name>
   	<servlet-class>com.revature.servlets.AllResReimburForUserServlet</servlet-class>
   </servlet>

@@ -9,9 +9,9 @@ import com.revature.domain.Reimbursement;
 public interface ReimbursementDao {
 
 	public Employee CreateNewEmp(String us, String pw, String fname, 
-			String lname, String email);
-	public boolean LoginIn(String us, String pw);
-	public Employee GetUserInfo(String us, String pw); // not done
+			String lname, String email); // done
+	public boolean LoginIn(String us, String pw); // done
+	public Employee GetUserInfo(String us); // done
 	
 	public Reimbursement CreateNewReimbursement(int amount, String description, Blob receipt, 
 			int ty, Employee emp);
@@ -25,5 +25,5 @@ public interface ReimbursementDao {
 	
 	public List<Employee> AllEmployees(); // done
 	public Employee EditEmployeeInfo(String un, String pw, String fname, 
-			String lname, String email, Employee emp);
+			String lname, String email, String oun); // not done
 }
