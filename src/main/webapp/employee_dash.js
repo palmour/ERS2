@@ -54,6 +54,4 @@ function init(){
 	$("#receipt-img").change(function(){
 		readPhotoPath(this);
 	});
-	
-	
 }

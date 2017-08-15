@@ -52,7 +52,7 @@
   
   <servlet>
   	<servlet-name>newReimbursement</servlet-name>
-  	<servlet-class>com.revature.servlets.newReimbursementServlet</servlet-class>
+  	<servlet-class>com.revature.servlets.NewReimbursementServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>

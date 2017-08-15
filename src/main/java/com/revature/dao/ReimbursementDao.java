@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.io.File;
 import java.sql.Blob;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface ReimbursementDao {
 	public boolean LoginIn(String us, String pw);
 	public Employee GetUserInfo(String us, String pw);
 	
-	public Reimbursement CreateNewReimbursement(int amount, String description, Blob receipt, 
+	public Reimbursement CreateNewReimbursement(int amount, String description, 
 			int ty, Employee emp);
 	
 	public List<Reimbursement> AllReimbursementForUser(Employee emp);
