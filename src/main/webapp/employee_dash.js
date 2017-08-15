@@ -27,4 +27,18 @@ function init(){
 	};
 	
 	document.getElementById("logout").addEventListener("click", logout);
+	
+	let newRequestDiv = document.getElementById("new-request-div");
+	let btn = document.getElementById("add-button");
+	let closeButton = document.getElementsByClassName("close")[0];
+	
+	btn.onclick = function(){
+		newRequestDiv.style.display = "block";
+	}
+	
+	closeButton.onclick = function(){
+		newRequestDiv.style.display = "none";
+	}
+	
+	
 }

@@ -32,19 +32,73 @@
                 <li><a href="#">Pending Requests</a></li>
                 <li><a href="#">Resolved Requests</a></li>
             </ul>
+            <ul class="pagination">
+            	<li><a id="add-button" href="#">+</a></li>
+            </ul>
         </div>
         <div id="search" class="container">
             <input type="text" name="search-bar" placeholder="filter">
         </div>
-        <div class="requests-list">
-            <ul class="list-group">
-                <li class="list-group-item">Lorem ipsum dolor
-                    <span class="badge">cancel</span>
-                </li>
-                <li class="list-group-item">sit amet, consectetur<span class="badge">cancel</span></li>
-                <li class="list-group-item">adipiscing elit, sed<span class="badge">cancel</span></li>
-                <li class="list-group-item">do eiusmod tempor<span class="badge">cancel</span></li>
-            </ul> 
+        <div class="table-div">
+        	<table id="test-table" class="table table-hover">
+        		<thead>
+        			<tr>
+        			    <th>Date submitted</th>
+        				<th>Amount</th>
+        				<th>Status</th>
+        				<th>Type</th>
+        				<th>Resolver</th>
+        				<th>Date Resolved</th>
+        				<th></th>
+        				<th></th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<tr>
+        				<td>07/26/17</td>
+        				<td>450.00</td>
+        				<td>Unresolved</td>
+        				<td>Business</td>
+        				<td>n/a</td>
+        				<td>n/a</td>
+        				<td><span class="badge cancel-request">cancel</span></td>
+        				<td><span class="badge view-request">view</span></td>
+        			</tr>
+        			<tr>
+        				<td>08/11/17</td>
+        				<td>50.00</td>
+        				<td>Resolved</td>
+        				<td>Travel</td>
+        				<td>Chris Palmour</td>
+        				<td>8/14/17</td>
+        				<td><span class="badge cancel-request">cancel</span></td>
+        				<td><span class="badge view-request">view</span></td>
+        			</tr>
+        		</tbody>
+        	</table>
+        </div>
+        <div id="new-request-div" class="modal-form">
+        	<div class="form-content">
+        		<span class="close">&times;</span>
+        		<form id="new-request-form">
+        			Amount: <input type="number" class="form-control" placeholder="0.00">
+        		<textarea class="form-control" form="new-request-form" rows="5" cols="20">Description</textarea>
+        		<select class="form-control" form="new-request-form">
+        			<option>Option 1</option>
+        			<option>Option 2</option>
+        			<option>Option 3</option>
+        		</select>
+        		<div id="file-submission-div">
+        			<label class="input-group-btn">
+        				<span class="btn btn-primary">Receipt
+        					<input type="file" name="receipt" id="receipt-img" form="new-request-form">
+        				</span>
+        			</label>
+        			<input type="text" class="form-control" readonly>
+        		</div>
+        		<input class="btn btn-default" type="submit" value="Submit">
+        		</form>
+        	</div>
         </div>
     </body>
     <script src="employee_dash.js"></script>
