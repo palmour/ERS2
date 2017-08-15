@@ -126,24 +126,18 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		Reimbursement temp = new Reimbursement();
 		CallableStatement cs = null;
 		try(Connection conn = ConnectionUtil.getConnectionProp()){
-			String sql = "{CALL P_ADD_NEW_REIMBUR(?, ?, ?, ?, ?, ?, ?, ?)}";
+			String sql = "{CALL P_ADD_NEW_REIMBUR(?, ?, ?, ?, ?)}";
 			cs = conn.prepareCall(sql);
 			cs.setInt(1, amount);
 			cs.setString(2, description);
 			cs.setBlob(3, receipt);
 			cs.setInt(4, emp.getU_ID());
 			cs.setInt(5, ty);
-			cs.registerOutParameter(6, Types.INTEGER);
-			cs.registerOutParameter(7, Types.TIMESTAMP);
-			cs.registerOutParameter(8, Types.INTEGER);
 			cs.execute();
 			temp.setR_AMOUNT(amount);
 			temp.setR_Description(description);
 			temp.setRT_TYPE(ty);
 			temp.setU_ID_AUTHOR(emp.getU_ID());
-			temp.setR_ID(cs.getInt(6));
-			temp.setR_SUBMITTED(cs.getTimestamp(7));
-			temp.setRT_STATUS(cs.getInt(8));
 		}catch(SQLException e){
 			e.printStackTrace();
 		}catch(Exception e) {

@@ -167,6 +167,15 @@ begin
 	into uids, fname, lname, email, urid, upass
 	from ERS_USERS where U_USERNAME = uname;
 end;
+/
+create or replace procedure P_ADD_NEW_REIMBUR(amt in number, descrip in varchar2, receipt in blob, 
+authoid in number, ty in number) as
+begin
+	insert into ERS_REIMBURSEMENTS (R_AMOUNT, R_DESCRIPTION, R_RECEIPT, U_ID_AUTHOR, RT_TYPE)
+	values(amt, descrip, receipt, authoid, ty);
+	commit;
+end;
+/
 
 
 

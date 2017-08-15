@@ -46,10 +46,17 @@ public class Main {
 		Employee temp = new Employee();
 		List<Reimbursement> rlist = new ArrayList();
 		temp.setU_USERNAME("cpalm");
+		temp.setU_ID(26);
 		ReimbursementDao rd = new ReimbursementDaoImpl();
 		rlist = rd.AllReimbursementForUser(temp);
 		System.out.println(rlist);
 		System.out.println(rlist.size());
+		
+		
+		Reimbursement rtemp = new Reimbursement();
+		rtemp = rd.CreateNewReimbursement(54, "candy", null, 3, temp);
+		System.out.println(rtemp);
+		
 	}
 
 }
