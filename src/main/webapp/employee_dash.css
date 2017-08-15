@@ -113,3 +113,16 @@ body{
 } 
 
 #receipt-img{display: none;}
+
+/*#submitted-photo{
+	position: absolute;
+	float: right;
+	margin-right: 50px;
+	margin-bottom: 1000px;
+}*/
+
+#submitted-photo{
+	position: relative;
+	left: 725px;
+	bottom: 535px;
+}
