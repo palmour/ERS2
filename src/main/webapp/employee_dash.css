@@ -33,12 +33,12 @@ body{
     padding-left: 20px;
 }
 
-.view-request{
+.view-request, .approve-btn{
 	background-color: teal;
 	color: white;
 }
 
-.cancel-request{
+.cancel-request, .deny-btn{
 	background-color: maroon;
 	color: white;
 }
@@ -48,12 +48,12 @@ body{
 	cursor:pointer;
 }
 
-.cancel-request:hover{
+.cancel-request:hover, .deny-btn:hover{
     background-color: white;
     color: maroon;
 }
 
-.view-request:hover{
+.view-request:hover, .approve-btn:hover{
 	background-color: white;
 	color: teal;
 }
@@ -125,4 +125,12 @@ body{
 	position: relative;
 	left: 725px;
 	bottom: 535px;
+}
+
+.to-hide{
+	display: none;
+}
+
+span input{
+	display: none;
 }

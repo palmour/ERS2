@@ -82,4 +82,49 @@
   	<url-pattern>/userUnResReimbur</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>allReimburEver</servlet-name>
+  	<servlet-class>com.revature.servlets.AllReimburEverServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>allReimburEver</servlet-name>
+  	<url-pattern>/allReimburEver</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>newPenReimburse</servlet-name>
+  	<servlet-class>com.revature.servlets.AllActiveReimburseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>newPenReimburse</servlet-name>
+  	<url-pattern>/newPenReimburse</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>resolvedReimburse</servlet-name>
+  	<servlet-class>com.revature.servlets.AllUnactiveReimburseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>resolvedReimburse</servlet-name>
+  	<url-pattern>/resolvedReimburse</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>denyReimbursement</servlet-name>
+  	<servlet-class>com.revature.servlets.DenyReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>denyReimbursement</servlet-name>
+  	<url-pattern>/denyReimbursement</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>approveReimbursement</servlet-name>
+  	<servlet-class>com.revature.servlets.ApproveReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>approveReimbursement</servlet-name>
+  	<url-pattern>/approveReimbursement</url-pattern>
+  </servlet-mapping>
+  
  </web-app>

@@ -429,5 +429,100 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		
 		return rlist;
 	}
+	
+	@Override
+	public List<Reimbursement> AllReimbursementsEver() {
+		List<Reimbursement> rlist = new ArrayList();
+		CallableStatement cs = null;
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String sql = "SELECT * FROM ERS_REIMBURSEMENTS";
+			cs = conn.prepareCall(sql);
+			ResultSet rs = cs.executeQuery();
+			while(rs.next()) {
+				int uid = rs.getInt("U_ID_AUTHOR");
+				int rids = rs.getInt("R_ID");
+				int amount = rs.getInt("R_AMOUNT");
+				String des = rs.getString("R_DESCRIPTION");
+				Blob rreceipt = rs.getBlob("R_RECEIPT");
+				Timestamp rsub = rs.getTimestamp("R_SUBMITTED");
+				Timestamp rreso = rs.getTimestamp("R_RESOLVED");
+				int idreso = rs.getInt("U_ID_RESOLVER");
+				int rttype = rs.getInt("RT_TYPE");
+				int rtstatus = rs.getInt("RT_STATUS");
+				
+				Reimbursement r = new Reimbursement(rids, amount, des, rreceipt, rsub, 
+						rreso, uid, idreso, rttype, rtstatus);
+				rlist.add(r);
+				
+			}
+			rs.close();	
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return rlist;
+	}
+	
+	@Override
+	public List<Reimbursement> AllResolvedReimbursement() {
+		List<Reimbursement> rlist = new ArrayList();
+		CallableStatement cs = null;
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String sql = "SELECT * FROM ERS_REIMBURSEMENTS WHERE "
+					+ "RT_STATUS = 3 OR RT_STATUS = 4";
+			cs = conn.prepareCall(sql);
+			ResultSet rs = cs.executeQuery();
+			while(rs.next()) {
+				int uid = rs.getInt("U_ID_AUTHOR");
+				int rids = rs.getInt("R_ID");
+				int amount = rs.getInt("R_AMOUNT");
+				String des = rs.getString("R_DESCRIPTION");
+				Blob rreceipt = rs.getBlob("R_RECEIPT");
+				Timestamp rsub = rs.getTimestamp("R_SUBMITTED");
+				Timestamp rreso = rs.getTimestamp("R_RESOLVED");
+				int idreso = rs.getInt("U_ID_RESOLVER");
+				int rttype = rs.getInt("RT_TYPE");
+				int rtstatus = rs.getInt("RT_STATUS");
+				
+				Reimbursement r = new Reimbursement(rids, amount, des, rreceipt, rsub, 
+						rreso, uid, idreso, rttype, rtstatus);
+				rlist.add(r);
+				
+			}
+			rs.close();	
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return rlist;
+	}
+	
+	@Override
+	public void updateReimbursement(int status, int r_id, Employee emp) {
+		Reimbursement temp = new Reimbursement();
+		PreparedStatement  cs = null;
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String sql = "Update ERS_REIMBURSEMENTS set RT_STATUS = ?, U_ID_RESOLVER = ?, R_RESOLVED = current_timestamp"
+					+ " where R_ID = ?";
+			cs = conn.prepareCall(sql);
+			cs.setInt(1, status);
+			cs.setInt(2, emp.getU_ID());
+			cs.setInt(3, r_id);
+			cs.execute();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 }

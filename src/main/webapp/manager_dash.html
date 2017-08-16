@@ -1,10 +1,89 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="employee_dash.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>ERS Dash</title>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <h1>ERS Home</h1>
+                <h4>Welcome <span id="username"></span></h4>
+            </div>
+            <div class="dropdown">
+                <button type="button" class="btn btn-default dropdown-toggle" aria-label="Justify" 
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="false"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownNavMenu">
+                    <li><a href="settings.html">My account</a></li>
+                    <li id="logout"><a href="home.html">Logout</a></li>
+                </ul>
+            </div>
+        </header>
+        <div id="pagination-div" aria-label="Page navigation">
+            <ul class="pagination">
+                <li id="pending-btn"><a href="#">Pending Requests</a></li>
+                <li id="resolved-btn"><a href="#">Resolved Requests</a></li>
+            </ul>
+            <ul class="pagination">
+            	<li><a id="add-button" href="#">+</a></li>
+            </ul>
+        </div>
+        <div id="search" class="container">
+            <input type="text" name="search-bar" placeholder="First Name">
+            <input type="text" name="search-bar" placeholder="Last Name">
+        </div>
+        <div id="table-div">
+        	<table id="r-table" class="table table-hover">
+        		<thead>
+        			<tr>
+        				<th>Employee ID</th>
+        			    <th>Date submitted</th>
+        				<th>Amount</th>
+        				<th>Status</th>
+        				<th>Type</th>
+        				<th>Resolver</th>
+        				<th>Date Resolved</th>
+        				<th></th>
+        				<th></th>
+        			</tr>
+        		</thead>
+        		<tbody id="r-tablebody">
+        			
+        		</tbody>
+        	</table>
+        </div>
+        <div id="new-request-div" class="modal-form">
+        	<div class="form-content">
+        		<span class="close">&times;</span>
+        		<form id="new-request-form" action="newReimbursement" method="post" enctype="multipart/form-data">
+        			Amount: <input type="number" name="amount" class="form-control" placeholder="0.00">
+        		<textarea class="form-control" name="description" form="new-request-form" rows="5" cols="20">Description</textarea>
+        		<select class="form-control" name="type" form="new-request-form">
+        			<option>Option 1</option>
+        			<option>Option 2</option>
+        			<option>Option 3</option>
+        		</select>
+        		<div id="file-submission-div">
+        			<label class="input-group-btn">
+        				<span class="btn btn-primary">Receipt
+        					<input type="file" name="receipt" id="receipt-img" form="new-request-form">
+        				</span>
+        			</label>
+        			<input type="text" class="form-control" readonly>
+        		</div>
+        		<input class="btn btn-default" type="submit" value="Submit">
+        		</form>
+        	</div>
+        	<img id="submitted-photo" src="http://ima.ulximg.com/image/src/artist/1393947618_c6482352293820269a412f5ebe5004d2.jpg/a578e42437b87f15c41a7c1bc2fe7f26/1393947618_the_dream_tron_52.jpg" 
+        		alt="your image" height="250" width="220 ">
+        </div>
+    </body>
+    <script src="manager_dash.js"></script>
 </html>
