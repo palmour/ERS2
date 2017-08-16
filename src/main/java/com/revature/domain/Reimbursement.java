@@ -3,6 +3,9 @@ package com.revature.domain;
 import java.sql.Blob;
 import java.sql.Timestamp;
 
+import com.revature.dao.ReimbursementDao;
+import com.revature.dao.ReimbursementDaoImpl;
+
 public class Reimbursement {
 
 	@Override
@@ -93,11 +96,22 @@ public class Reimbursement {
 		R_SOLVED = r_SOLVED;
 		U_ID_AUTHOR = u_ID_AUTHOR;
 		U_ID_RESOLVER = u_ID_RESOLVER;
-		RT_TYPE = rT_TYPE;
+		RT_TYPE = rT_TYPE; 
 		RT_STATUS = rT_STATUS;
+		
 	}
 	public Reimbursement() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public String getTypeName() {
+		ReimbursementDao rd = new ReimbursementDaoImpl();
+		return rd.getTypeByKey(this.RT_TYPE);
+	}
+	
+	public String getStatusName() {
+		ReimbursementDao rd = new ReimbursementDaoImpl();
+		return rd.getStatusByKey(this.RT_STATUS);
 	}
 }

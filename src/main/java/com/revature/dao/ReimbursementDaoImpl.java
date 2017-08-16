@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -18,8 +19,6 @@ import com.revature.domain.Employee;
 import com.revature.domain.Reimbursement;
 import com.revature.domain.UserNameAlreadyExist;
 import com.revature.util.ConnectionUtil;
-
-import oracle.sql.BLOB;
 
 public class ReimbursementDaoImpl implements ReimbursementDao {
 
@@ -305,4 +304,127 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		return elist;
 		
 	}
+
+
+	@Override
+	public String getStatusByKey(int key) {
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String result = "";
+			String sql = "SELECT RS_STATUS FROM ERS_REIMBURSEMENT_STATUS WHERE RS_ID = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, key);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				result = rs.getString("RS_STATUS"); return result;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+
+	@Override
+	public String getTypeByKey(int key) {
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String result = "";
+			String sql = "SELECT RT_TYPE FROM ERS_REIMBURSEMENT_TYPE WHERE RT_ID = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, key);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				result = rs.getString("RT_TYPE"); return result;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public List<Reimbursement> AllresolvedReimbursementForUser(Employee emp) {
+		List<Reimbursement> rlist = new ArrayList();
+		CallableStatement cs = null;
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String sql = "SELECT * FROM ERS_REIMBURSEMENTS"
+					+ " where U_ID_AUTHOR = "+emp.getU_ID()+" AND RT_STATUS = 3 OR U_ID_AUTHOR = "+emp.getU_ID()+""
+							+ " AND RT_STATUS = 4";
+			cs = conn.prepareCall(sql);
+			ResultSet rs = cs.executeQuery();
+			while(rs.next()) {
+				int uid = emp.getU_ID();
+				int rids = rs.getInt("R_ID");
+				int amount = rs.getInt("R_AMOUNT");
+				String des = rs.getString("R_DESCRIPTION");
+				Blob rreceipt = rs.getBlob("R_RECEIPT");
+				Timestamp rsub = rs.getTimestamp("R_SUBMITTED");
+				Timestamp rreso = rs.getTimestamp("R_RESOLVED");
+				int idreso = rs.getInt("U_ID_RESOLVER");
+				int rttype = rs.getInt("RT_TYPE");
+				int rtstatus = rs.getInt("RT_STATUS");
+				
+				Reimbursement r = new Reimbursement(rids, amount, des, rreceipt, rsub, 
+						rreso, uid, idreso, rttype, rtstatus);
+				rlist.add(r);
+				
+			}
+			rs.close();	
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return rlist;
+	}
+	
+	@Override
+	public List<Reimbursement> AllunresolvedReimbursementForUser(Employee emp) {
+		List<Reimbursement> rlist = new ArrayList();
+		CallableStatement cs = null;
+		try(Connection conn = ConnectionUtil.getConnectionProp()){
+			String sql = "SELECT * FROM ERS_REIMBURSEMENTS"
+					+ " where U_ID_AUTHOR = "+emp.getU_ID()+" AND RT_STATUS = 1 OR U_ID_AUTHOR = "+emp.getU_ID()+""
+							+ " AND RT_STATUS = 2";
+			cs = conn.prepareCall(sql);
+			ResultSet rs = cs.executeQuery();
+			while(rs.next()) {
+				int uid = emp.getU_ID();
+				int rids = rs.getInt("R_ID");
+				int amount = rs.getInt("R_AMOUNT");
+				String des = rs.getString("R_DESCRIPTION");
+				Blob rreceipt = rs.getBlob("R_RECEIPT");
+				Timestamp rsub = rs.getTimestamp("R_SUBMITTED");
+				Timestamp rreso = rs.getTimestamp("R_RESOLVED");
+				int idreso = rs.getInt("U_ID_RESOLVER");
+				int rttype = rs.getInt("RT_TYPE");
+				int rtstatus = rs.getInt("RT_STATUS");
+				
+				Reimbursement r = new Reimbursement(rids, amount, des, rreceipt, rsub, 
+						rreso, uid, idreso, rttype, rtstatus);
+				rlist.add(r);
+				
+			}
+			rs.close();	
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return rlist;
+	}
+
 }

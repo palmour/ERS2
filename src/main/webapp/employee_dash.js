@@ -54,4 +54,57 @@ function init(){
 	$("#receipt-img").change(function(){
 		readPhotoPath(this);
 	});
+	
+	$.get("userReimburse", function(responseJson) {          
+        let $tablebody = $("#r-tablebody"); 
+        $.each(responseJson, function(index, Reimbursement) {    
+            $("<tr>").appendTo($tablebody)                     
+            		.append($("<td>").text(Reimbursement.R_SUBMITTED))
+            		.append($("<td>").text(Reimbursement.R_AMOUNT))  
+            		.append($("<td>").text(Reimbursement.RT_STATUS))
+            		.append($("<td>").text(Reimbursement.RT_TYPE))
+            		.append($("<td>").text(Reimbursement.U_ID_RESOLVER))
+            		.append($("<td>").text(Reimbursement.R_SOLVED))
+            		.append("<td><span class='badge cancel-request'>cancel</span></td>")
+            		.append("<td><span class='badge view-request'>view</span></td>");
+        });
+    });
+	
+	$("#pending-btn").click(function(){
+		let $tablebody = $("#r-tablebody");
+		$tablebody.empty();
+		
+		$.get("userUnResReimbur", function(responseJson){
+			$.each(responseJson, function(index, Reimbursement){
+				$("<tr>").appendTo($tablebody)                     
+        		.append($("<td>").text(Reimbursement.R_SUBMITTED))
+        		.append($("<td>").text(Reimbursement.R_AMOUNT))  
+        		.append($("<td>").text(Reimbursement.RT_STATUS))
+        		.append($("<td>").text(Reimbursement.RT_TYPE))
+        		.append($("<td>").text(Reimbursement.U_ID_RESOLVER))
+        		.append($("<td>").text(Reimbursement.R_SOLVED))
+        		.append("<td><span class='badge cancel-request'>cancel</span></td>")
+        		.append("<td><span class='badge view-request'>view</span></td>");
+			});
+		});
+	});
+	
+	$("#resolved-btn").click(function(){
+		let $tablebody = $("#r-tablebody");
+		$tablebody.empty();
+		
+		$.get("userResReimbur", function(responseJson){
+			$.each(responseJson, function(index, Reimbursement){
+				$("<tr>").appendTo($tablebody)                     
+        		.append($("<td>").text(Reimbursement.R_SUBMITTED))
+        		.append($("<td>").text(Reimbursement.R_AMOUNT))  
+        		.append($("<td>").text(Reimbursement.RT_STATUS))
+        		.append($("<td>").text(Reimbursement.RT_TYPE))
+        		.append($("<td>").text(Reimbursement.U_ID_RESOLVER))
+        		.append($("<td>").text(Reimbursement.R_SOLVED))
+        		.append("<td><span class='badge cancel-request'>cancel</span></td>")
+        		.append("<td><span class='badge view-request'>view</span></td>");
+			});
+		});
+	});
 }

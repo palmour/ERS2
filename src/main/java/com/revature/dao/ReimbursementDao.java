@@ -22,4 +22,8 @@ public interface ReimbursementDao {
 	public List<Reimbursement> AllApprovedReimbursement();
 	
 	public List<Employee> AllEmployees();
+	public String getStatusByKey(int key);
+	public String getTypeByKey(int key);
+	public List<Reimbursement> AllresolvedReimbursementForUser(Employee emp);
+	public List<Reimbursement> AllunresolvedReimbursementForUser(Employee emp);
 }
