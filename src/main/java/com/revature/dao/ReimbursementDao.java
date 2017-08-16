@@ -10,7 +10,7 @@ import com.revature.domain.Reimbursement;
 public interface ReimbursementDao {
 
 	public Employee CreateNewEmp(String us, String pw, String fname, 
-			String lname, String email);
+			String lname, String email, String role);
 	public boolean LoginIn(String us, String pw);
 	public Employee GetUserInfo(String us, String pw);
 	

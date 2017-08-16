@@ -27,20 +27,23 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	// creates a new employee to be added to the DATABASE
 	// also returns the U_ID and sets the UR_ID to 3 as the default. 
 	@Override
-	public Employee CreateNewEmp(String us, String pw, String fname, String lname, String email) {
+	public Employee CreateNewEmp(String us, String pw, String fname, String lname, String email, String roleName) {
 		Employee temp = new Employee();
 		CallableStatement cs = null;
 		try(Connection conn = ConnectionUtil.getConnectionProp()){
 			System.out.println("connected");
-			String sql = "{CALL P_ADD_NEW_USER(?, ?, ?, ?, ?, ?)}";
+			String sql = "{CALL P_ADD_NEW_USER(?, ?, ?, ?, ?, ?, ?)}";
 			cs = conn.prepareCall(sql);
-			
+			int role = 3;
+			if(roleName.equalsIgnoreCase("Manager")) {role = 2;}
+			else if(roleName.equalsIgnoreCase("Employee")) {role = 3;}
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.setString(2, us);
 			cs.setString(3, pw);
 			cs.setString(4, fname);
 			cs.setString(5, lname);
 			cs.setString(6, email);
+			cs.setInt(7, role);
 			cs.execute();
 			temp.setU_ID(cs.getInt(1));
 			temp.setU_USERNAME(us);

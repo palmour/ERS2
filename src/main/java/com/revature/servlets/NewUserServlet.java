@@ -23,9 +23,10 @@ public class NewUserServlet extends HttpServlet{
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
 		String email = request.getParameter("email");
+		String role = request.getParameter("role");
 		
 		ReimbursementDao rd = new ReimbursementDaoImpl();
-		rd.CreateNewEmp(us, pw, fname, lname, email);
+		rd.CreateNewEmp(us, pw, fname, lname, email, role);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("username", us);
